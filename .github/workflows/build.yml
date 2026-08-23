@@ -27,6 +27,7 @@ jobs:
       # This will run build.sh located in the root of your checked-out repository.
       - name: Execute Kernel Build Script
         run: |
+           git submodule update --init --recursive
            ln -s KernelSU-Next/kernel drivers/kernelsu
            chmod +x build_floppaksu_crave.sh
            ./build_floppaksu_crave.sh
