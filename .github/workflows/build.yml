@@ -37,6 +37,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: compiled-android-kernel
-          path: output/
+          path: out-crave/
           if-no-files-found: error # Fails the workflow if output/ is empty (meaning the build failed)
           
