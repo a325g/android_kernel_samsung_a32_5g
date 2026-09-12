@@ -2,7 +2,7 @@ name: Ssh workflow
 
 on:
   pull_request:
-    branches: [ "ksu-susfs" ]
+    branches: [ "a32x-kernel" ]
   workflow_dispatch: 
     # Allows you to manually trigger the build from the Actions tab
 
@@ -31,3 +31,14 @@ jobs:
         uses: mxschmitt/action-tmate@v3
         with:
          limit-access-to-actor: false
+         detached: true
+
+      # Step 4: Upload the compiled kernel artifact
+      # This grabs everything from the output/ folder and makes it a downloadable zip.
+      - name: Upload Kernel Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-android-kernel
+          path: output/
+          if-no-files-found: error # Fails the workflow if output/ is empty (meaning the build failed)
+          
